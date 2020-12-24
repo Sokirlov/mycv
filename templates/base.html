@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{% static "main.css" %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,800;1,300;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="sidebar">
+        {% for res in resercher %}
+        <div id="avatar">
+                <img src="/media/{{ res.avatar }}"  title="{{ res.name }}" alt="{{ res.name }}" width="100%">
+        </div>
+        <div id="contacts">
+            <ul>
+                <li>{{ res.telephone }}</li>
+{#                <li>{{ res.adress }}</li>#}
+                <li>{{ res.country }}, {{ res.city }}</li>
+            </ul>
+        </div>
+        {% endfor %}
+
+        <div class="skills">
+            <h3>Hard Skills</h3>
+            <ul>
+                {% for hs in hardskills %}
+                <li>{{ hs.name }}<div class="progress_container"><div class="progress_progress" style="width:{{ hs.raite }}%;"></div></div></li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        <div class="skills">
+            <h3>Soft Skills</h3>
+            <ul>
+                {% for sf in softskills %}
+                <li>{{ sf.name }} <div class="progress_container"><div class="progress_progress" style="width:{{ sf.raite }}%;"></div></div></li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+    <div class="content">
+     {% for res in resercher %}
+        <div id="name">
+{#            {% for res in resercher %}#}
+                <h1>{{ res.name }}</h1>
+                <p>{{ res.profession }}</p>
+{#            {% endfor %}#}
+        </div>
+        <div id="introduction">
+{#            {% for res in resercher %}#}
+                {{ res.introduction }}
+{#            {% endfor %}#}
+        </div>
+    {% endfor %}
+        <div id="projects">
+        <h2>My Projects</h2>
+            {% for pro in projects %}
+                <div class="block">
+                    <h3>{{ pro.name }}</h3>
+                    <p><a href="{{ pro.link }}">{{ pro.link }}</a></p>
+                    <div class="description">{{ pro.description }}</div>
+                    <div class="hardskill">
+                        {% for hskill in pro.skils.all %}
+                            <div>{{ hskill.name }}&nbsp;</div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="experience">
+        <h2>My Experience</h2>
+            {% for exp in experience %}
+            <div class="block">
+                <h3>{{ exp.name }}</h3>
+                <p><a href="{{ exp.link }}">{{ exp.link }}</a></p>
+                <p>{{ exp.postion }}, &nbsp; {{ exp.start_work |date:"d M Y" }} - {{ exp.end_work |date:"d M Y" }}</p>
+                <div class="description"> {{ exp.description }}</div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
