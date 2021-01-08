@@ -72,6 +72,7 @@ class Experience(models.Model):
     end_work = models.DateField('Конец работы в компании')
     link = models.URLField('Сайт компании')
     description = models.TextField('Чем занимался, за что отвечал', max_length=1000)
+    resercher = models.ForeignKey(Resercher, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['-start_work']
@@ -88,6 +89,7 @@ class Projects(models.Model):
     link = models.URLField('адрес проекта')
     skils = models.ManyToManyField(HardSkills)  #, related_name='Используемые навыки', on_delete=models.SET_NULL, null=True, blank=True)
     description = models.TextField('В чем суть проекта ?\nКакие ососбенности ?', max_length=1000)
+    resercher = models.ForeignKey(Resercher, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['idsort']

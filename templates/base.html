@@ -10,7 +10,8 @@
 </head>
 <body>
 <div class="container">
-    <div class="sidebar">
+    <div id="left">
+        <div class="sidebar">
         {% for res in resercher %}
         <div id="avatar">
                 <img src="/media/{{ res.avatar }}"  title="{{ res.name }}" alt="{{ res.name }}" width="100%">
@@ -43,32 +44,35 @@
 
         </div>
     </div>
+    </div>
     <div class="content">
      {% for res in resercher %}
-        <div id="name">
-{#            {% for res in resercher %}#}
-                <h1>{{ res.name }}</h1>
-                <p>{{ res.profession }}</p>
-{#            {% endfor %}#}
-        </div>
+         <div id="cont_name">
+            <div id="name">
+    {#            {% for res in resercher %}#}
+                    <h1>{{ res.name }}</h1>
+                    <p>{{ res.profession }}</p>
+    {#            {% endfor %}#}
+            </div>
+         </div>
         <div id="introduction">
 {#            {% for res in resercher %}#}
                 {{ res.introduction }}
 {#            {% endfor %}#}
         </div>
     {% endfor %}
-        <div id="projects">
         <h2>My Projects</h2>
+        <div id="projects">
             {% for pro in projects %}
                 <div class="block">
-                    <h3>{{ pro.name }}</h3>
-                    <p><a href="{{ pro.link }}">{{ pro.link }}</a></p>
-                    <div class="description">{{ pro.description }}</div>
-                    <div class="hardskill">
+                    <h3 class="pdw-5">{{ pro.name }}</h3>
+                    <a href="{{ pro.link }}" class="pdw-5">{{ pro.link }}</a>
+                    <div class="description pdw-5"><div>ABOUT:</div><p>{{ pro.description }}</p></div>
+                    <div class="hardskill pdw-5">
+                        <div class="tehn">Technologies:</div>
                         {% for hskill in pro.skils.all %}
-                            <div>{{ hskill.name }}&nbsp;</div>
+                            <div class="hskill">{{ hskill.name }}</div>
                         {% endfor %}
-
                     </div>
                 </div>
             {% endfor %}
@@ -77,10 +81,10 @@
         <h2>My Experience</h2>
             {% for exp in experience %}
             <div class="block">
-                <h3>{{ exp.name }}</h3>
-                <p><a href="{{ exp.link }}">{{ exp.link }}</a></p>
-                <p>{{ exp.postion }}, &nbsp; {{ exp.start_work |date:"d M Y" }} - {{ exp.end_work |date:"d M Y" }}</p>
-                <div class="description"> {{ exp.description }}</div>
+                <div class="exp_top"><div class="title"><h3>{{ exp.name }}</h3></div><div class="exp_time">{{ exp.start_work |date:"d M Y" }} - {{ exp.end_work |date:"d M Y" }}</div></div>
+                <a href="{{ exp.link }}">{{ exp.link }}</a>
+                <p><strong>Position:</strong> {{ exp.postion }}</p>
+                <div class="description">ABOUT:  &nbsp; {{ exp.description }}</div>
 
             </div>
             {% endfor %}

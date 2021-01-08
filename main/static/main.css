@@ -1,18 +1,30 @@
+*{
+    box-sizing: border-box;
+}
 body{
     margin: 0;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
+    color: #505050;
 }
 a {
     color: #333;
 }
+.pdw-5{
+    padding: 0 5px;
+}
 .container{
-    width: calc(100vw - 60px);
-    padding: 0 20px;
+    width: 100%;
+    /*padding: 0 0px;*/
     display: flex;
 }
+#left{
+    flex: 1;
+    bottom: 0;
+    top: 0;
+}
 .sidebar {
-    /*height: 100%;*/
+    height: 100%;
     /*flex: 1;*/
     background-color: #dedede;
     padding: 10px 20px;
@@ -39,11 +51,14 @@ div.skills {
     border-top: 1px solid #999;
 }
 h2 {
-    font-weight: 400;
+    font-weight: 200;
     text-align: center;
     padding: 10px 0;
-    border-bottom: solid #474747;
-    margin: 50px 0 0px 0px;
+    /*border-bottom: solid #474747;*/
+    margin: 0px 0 20px 0px;
+    font-size: 44pt;
+    width: 100%;
+    color: #bbb;
 }
 h3{
     text-transform: uppercase;
@@ -63,6 +78,9 @@ h3{
 
 .content {
     flex: 4;
+}
+div#cont_name {
+    height: 150px;
 }
 div#name {
     width: 70%;
@@ -92,28 +110,74 @@ div#introduction {
     padding: 30px 10px;
     line-height: 2.3;
 }
-div#projects, div#experience {
-    padding: 0 50px;
+#projects{
+    background: #fbfbfb;
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
 }
-
+div#projects, div#experience {
+    padding: 10px 0 50px 30px;
+}
+.block h3{
+    margin: 5px 0;
+}
+.block a{
+    font-size: 10pt;
+}
+.exp_top {
+    display: flex;
+    align-items: center;
+}
+.exp_time {
+    margin: 0 0 0 auto;
+    padding-right: 20px;
+    font-style: italic;
+    font-weight: 200;
+}
+.tehn{
+    text-transform: uppercase;
+}
 .block {
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    padding: 20px;
+    border-bottom: 1px dotted #f0f0f0;
+    /*margin-bottom: 20px;*/
+    padding: 20px 0;
+}
+#projects .block {
+    width: 100%;
+}
+#projects .block:last-child {
+    border: 0;
+    padding-bottom: 0;
 }
 .hardskill {
     display: flex;
     flex-wrap: wrap;
     padding: 5px;
-    background: #dedede;
+    /*background: #dedede;*/
 }
 .hardskill>div {
-    margin: 10px 10px;
+    margin: 2px;
+}
+.hskill{
+    border: 1px solid #f0f0f0;
+    padding: 5px;
+    background: #fff;
+    font-size: 10pt;
+    border-radius: 3px;
+}
+.tehn {
+    width: 100%;
 }
 .description {
-    min-height: 100px;
-    padding: 10px;
-    background: #F0F0F0;
+    /*min-height: 100px;*/
+    /*padding: 10px 8px;*/
+    /*background: #F0F0F0;*/
+    margin-top: 20px;
+}
+.description p{
+    font-size: 10pt;
 }
 
 /*----------------animations----------------*/
@@ -141,12 +205,12 @@ div#projects, div#experience {
     animation-fill-mode: forwards;
     opacity: 0;
     width: 0;
-
+    box-shadow: 1px 0px 3px 0 #aaa;
 }
 @keyframes widths {
     0% {width: 0; opacity: 0;}
     /*50%{opacity: 1; width: 10%;}*/
-    100% {width: 20%; opacity: 1;}
+    100% {width: 100%; opacity: 1;}
 }
 
 .skills li{
@@ -160,4 +224,17 @@ div#projects, div#experience {
 @keyframes transforms {
     0%{transform: scale(1,0)}
     100%{transform: scale(1,1)}
+}
+
+#name{
+    position: relative;
+    top: -125%;
+    animation-name: slide-from-top;
+    /*animation-delay: 1s;*/
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
+}
+@keyframes slide-from-top {
+    0%{top: -125%;}
+    100%{top: 0%;}
 }
