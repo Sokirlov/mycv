@@ -1,0 +1,9 @@
+asgiref==3.3.1
+Django==3.1.4
+django-cors-headers==3.6.0
+django-filter==2.4.0
+djangorestframework==3.12.2
+Markdown==3.3.3
+Pillow==8.0.1
+pytz==2020.4
+sqlparse==0.4.1

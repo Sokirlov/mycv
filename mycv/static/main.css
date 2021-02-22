@@ -1,0 +1,240 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: #505050;
+}
+a {
+    color: #333;
+}
+.pdw-5{
+    padding: 0 5px;
+}
+.container{
+    width: 100%;
+    /*padding: 0 0px;*/
+    display: flex;
+}
+#left{
+    flex: 1;
+    bottom: 0;
+    top: 0;
+}
+.sidebar {
+    height: 100%;
+    /*flex: 1;*/
+    background-color: #dedede;
+    padding: 10px 20px;
+    text-align: center;
+    top: 0;
+    bottom: 0;
+}
+div#avatar {
+    min-height: 200px;
+}
+ul {
+    text-align: left;
+    padding: 0;
+}
+.sidebar li {
+    list-style: none;
+    margin: 20px 0;
+    /*display: flex;*/
+    /*align-items: center;*/
+}
+div.skills {
+    padding: 10px 0;
+    margin-top: 20px;
+    border-top: 1px solid #999;
+}
+h2 {
+    font-weight: 200;
+    text-align: center;
+    padding: 10px 0;
+    /*border-bottom: solid #474747;*/
+    margin: 0px 0 20px 0px;
+    font-size: 44pt;
+    width: 100%;
+    color: #bbb;
+}
+h3{
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.progress_progress{
+    background: steelblue;
+    height: 100%;
+}
+.progress_container {
+    width: 100%;
+    height: 5px;
+    border: 1px solid;
+    /*margin: 0 0 0 auto;*/
+}
+
+.content {
+    flex: 4;
+}
+div#cont_name {
+    height: 150px;
+}
+div#name {
+    width: 70%;
+    margin: auto;
+    height: 150px;
+    text-align: center;
+    padding: 10px;
+    background-color: #474747;
+    color: #cecece;
+}
+#name > h1{
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 38pt;
+    margin-bottom: 0;
+    margin-top: 20px;
+}
+#name > p{
+    margin-top: 0;
+    font-size: 15pt;
+    font-weight: 300;
+    letter-spacing: 5px;
+}
+div#introduction {
+    margin: auto;
+    width: 70%;
+    padding: 30px 10px;
+    line-height: 2.3;
+}
+#projects{
+    background: #fbfbfb;
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+}
+div#projects, div#experience {
+    padding: 10px 0 50px 30px;
+}
+.block h3{
+    margin: 5px 0;
+}
+.block a{
+    font-size: 10pt;
+}
+.exp_top {
+    display: flex;
+    align-items: center;
+}
+.exp_time {
+    margin: 0 0 0 auto;
+    padding-right: 20px;
+    font-style: italic;
+    font-weight: 200;
+}
+.tehn{
+    text-transform: uppercase;
+}
+.block {
+    border-bottom: 1px dotted #f0f0f0;
+    /*margin-bottom: 20px;*/
+    padding: 20px 0;
+}
+#projects .block {
+    width: 100%;
+}
+#projects .block:last-child {
+    border: 0;
+    padding-bottom: 0;
+}
+.hardskill {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+    /*background: #dedede;*/
+}
+.hardskill>div {
+    margin: 2px;
+}
+.hskill{
+    border: 1px solid #f0f0f0;
+    padding: 5px;
+    background: #fff;
+    font-size: 10pt;
+    border-radius: 3px;
+}
+.tehn {
+    width: 100%;
+}
+.description {
+    /*min-height: 100px;*/
+    /*padding: 10px 8px;*/
+    /*background: #F0F0F0;*/
+    margin-top: 20px;
+}
+.description p{
+    font-size: 10pt;
+}
+
+/*----------------animations----------------*/
+
+#contacts, #avatar, h3{
+    animation-name: opacitys;
+    animation-delay: 2s;
+    animation-duration: 2.5s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+@keyframes opacitys {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+
+    }
+}
+.sidebar{
+    animation-name: widths;
+    animation-delay: 500ms;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    width: 0;
+    box-shadow: 1px 0px 3px 0 #aaa;
+}
+@keyframes widths {
+    0% {width: 0; opacity: 0;}
+    /*50%{opacity: 1; width: 10%;}*/
+    100% {width: 100%; opacity: 1;}
+}
+
+.skills li{
+    animation-name: transforms;
+    animation-delay: 2s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    transform: scale(1, 0);
+}
+
+@keyframes transforms {
+    0%{transform: scale(1,0)}
+    100%{transform: scale(1,1)}
+}
+
+#name{
+    position: relative;
+    top: -125%;
+    animation-name: slide-from-top;
+    /*animation-delay: 1s;*/
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
+}
+@keyframes slide-from-top {
+    0%{top: -125%;}
+    100%{top: 0%;}
+}
