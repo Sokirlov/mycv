@@ -3,3 +3,4 @@ venv/
 migrations/
 .idea/
 db.sqlite3
+conf.py
