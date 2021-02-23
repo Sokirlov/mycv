@@ -4,3 +4,5 @@ migrations/
 .idea/
 db.sqlite3
 conf.py
+local_conf.py
+
