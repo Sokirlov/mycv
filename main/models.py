@@ -87,7 +87,7 @@ class Projects(models.Model):
     idsort = models.PositiveSmallIntegerField('Сортировка', auto_created=True)
     name = models.CharField('Название проекта', max_length=250)
     link = models.URLField('адрес проекта')
-    skils = models.ManyToManyField(HardSkills)  #, related_name='Используемые навыки', on_delete=models.SET_NULL, null=True, blank=True)
+    skils = models.ManyToManyField(HardSkills, related_name='Знания')  #, related_name='Используемые навыки', on_delete=models.SET_NULL, null=True, blank=True)
     description = models.TextField('В чем суть проекта ?\nКакие ососбенности ?', max_length=1000)
     resercher = models.ForeignKey(Resercher, on_delete=models.CASCADE)
 
@@ -98,3 +98,4 @@ class Projects(models.Model):
 
     def __str__(self):
         return self.name
+
