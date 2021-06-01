@@ -18,7 +18,7 @@ PROJECT_ROOT = os.path.dirname(__file__)
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = '5vf8g6-v_rhewh=sy(sk#2qaaz(7wk6_et6snc12f9!w)y-kq*'
 # DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['g.fotka.kiev.ua', 'localhost']
 
 
 # Application definition
