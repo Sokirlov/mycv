@@ -8,6 +8,8 @@ class Resercher(models.Model):
     profession = models.CharField('Профессия', max_length=150)
     avatar = models.ImageField('Фотография', upload_to='img/', blank=True, null=True)
     telephone = models.CharField('Номер телефона', max_length=10, default='0000000000')
+    skype = models.CharField('Скайп', max_length=100, blank=True, null=True)
+    linkedin = skype = models.CharField('Скайп', max_length=500, blank=True, null=True)
     country = models.CharField('Страна', max_length=50)
     city = models.CharField('Город', max_length=50)
     adress = models.CharField('Адрес', max_length=250)
@@ -70,7 +72,7 @@ class Experience(models.Model):
     postion = models.CharField('Занимаемайя должность', max_length=500, blank=True, null=True)
     start_work = models.DateField('Начало работы в компании')
     end_work = models.DateField('Конец работы в компании')
-    link = models.URLField('Сайт компании')
+    link = models.URLField('Сайт компании', blank=True, null=True)
     description = models.TextField('Чем занимался, за что отвечал', max_length=1000)
     resercher = models.ForeignKey(Resercher, on_delete=models.CASCADE)
 
