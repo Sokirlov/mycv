@@ -9,7 +9,7 @@ class Resercher(models.Model):
     avatar = models.ImageField('Фотография', upload_to='img/', blank=True, null=True)
     telephone = models.CharField('Номер телефона', max_length=10, default='0000000000')
     skype = models.CharField('Скайп', max_length=100, blank=True, null=True)
-    linkedin = models.CharField('LinkedIn', max_length=500, blank=True, null=True)
+    linkedin = models.CharField('LinkedIn', max_length=400, blank=True, null=True)
     country = models.CharField('Страна', max_length=50)
     city = models.CharField('Город', max_length=50)
     adress = models.CharField('Адрес', max_length=250)
