@@ -26,7 +26,7 @@ class HardSkillsInline(admin.TabularInline):
     )
 
 class ResercherAdmin(admin.ModelAdmin):
-    list_display = ['name', 'profession', 'telephone', 'country', 'city', 'adress',]
+    list_display = ['name', 'profession', 'telephone', 'skype', 'linkedin', 'country', 'city', 'adress',]
     list_display_links = ['name', 'profession', 'telephone', 'country', 'city', 'adress',]
     inlines = [
         SoftSkillsInline,
