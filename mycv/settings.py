@@ -135,9 +135,9 @@ CORS_ALLOWED_ORIGINS = [
     # "http://g.fotka.kiev.ua:8000",
     # "http://g.fotka.kiev.ua:8080",
     # "http://g.fotka.kiev.ua:8081",
-    "http://vuecv.fotka.kiev.ua:8000",
-    "http://vuecv.fotka.kiev.ua:8080",
-    "http://vuecv.fotka.kiev.ua:8081",
+    "http://vuecv.fotka.kiev.ua",
+    "http://vuecv.fotka.kiev.ua",
+    "http://vuecv.fotka.kiev.ua",
     # local develop ip
     "http://37.53.84.156:8000",
     "http://37.53.84.156:8080",
