@@ -18,7 +18,7 @@ PROJECT_ROOT = os.path.dirname(__file__)
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = '5vf8g6-v_rhewh=sy(sk#2qaaz(7wk6_et6snc12f9!w)y-kq*'
 # DEBUG = True
-ALLOWED_HOSTS = ['g.fotka.kiev.ua', 'localhost']
+ALLOWED_HOSTS = ['g.fotka.kiev.ua', '127.0.0.1',]
 
 
 # Application definition
@@ -126,15 +126,18 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000",
-    "http://localhost:8080",
-    "http://localhost:8081",
-    "http://127.0.0.1:8000",
-    "http://127.0.0.1:8080",
-    "http://127.0.0.1:8081",
-    "http://g.fotka.kiev.ua:8000",
-    "http://g.fotka.kiev.ua:8080",
-    "http://g.fotka.kiev.ua:8081",
+    # "http://localhost:8000",
+    # "http://localhost:8080",
+    # "http://localhost:8081",
+    # "http://127.0.0.1:8000",
+    # "http://127.0.0.1:8080",
+    # "http://127.0.0.1:8081",
+    # "http://g.fotka.kiev.ua:8000",
+    # "http://g.fotka.kiev.ua:8080",
+    # "http://g.fotka.kiev.ua:8081",
+    "http://vuecv.fotka.kiev.ua:8000",
+    "http://vuecv.fotka.kiev.ua:8080",
+    "http://vuecv.fotka.kiev.ua:8081",
     # local develop ip
     "http://37.53.84.156:8000",
     "http://37.53.84.156:8080",
