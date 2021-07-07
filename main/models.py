@@ -71,7 +71,7 @@ class Experience(models.Model):
     name = models.CharField('Название компании', max_length=250)
     postion = models.CharField('Занимаемайя должность', max_length=500, blank=True, null=True)
     start_work = models.DateField('Начало работы в компании')
-    end_work = models.DateField('Конец работы в компании', blank=True, null=True)
+    end_work = models.DateField('Конец работы в компании', null=True, blank=True)
     link = models.URLField('Сайт компании', blank=True, null=True)
     description = models.TextField('Чем занимался, за что отвечал', max_length=1000)
     resercher = models.ForeignKey(Resercher, on_delete=models.CASCADE)
