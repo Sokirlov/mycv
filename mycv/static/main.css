@@ -125,6 +125,7 @@ div#introduction {
 }
 .block a{
     font-size: 10pt;
+    color: #aaa;
 }
 .exp_top {
     display: flex;
