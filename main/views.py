@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
 from .models import Resercher, HardSkills, SoftSkills, Experience, Projects
-import pdfkit
+import pdfkit  #https://pypi.org/project/pdfkit/
 from rest_framework import viewsets
 from .serializers import AllSerializer, HardSkillsSerializer, SoftSkillsSerializer, ExperienceSerializer, ProjectsSerializer
 
