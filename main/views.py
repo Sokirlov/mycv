@@ -39,7 +39,7 @@ def Downloads(request):
 
 def pdf(request):
     # file_data = pdfkit.from_url(url='http://g.fotka.kiev.ua/print/')
-    output_file = f'{settings.MEDIA_ROOT}\\cv.pdf'
+    output_file = f'{settings.MEDIA_ROOT}/img/cv.pdf'
     print(f'{output_file:_^50}')
 
     file_data = wkhtmltopdf(url='http://g.fotka.kiev.ua/print/', output_file=output_file)
