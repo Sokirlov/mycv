@@ -10,6 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,800;1,300;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
+<div class="print fixbtn">
+    <a href="{% url 'print' %}">Print CV</a>
+</div>
 <div class="container">
     <div id="left">
         <div class="sidebar">
@@ -19,9 +22,12 @@
         </div>
         <div id="contacts">
             <ul>
-                <li>{{ res.telephone }}</li>
-{#                <li>{{ res.adress }}</li>#}
+                <li>Phone: <a href="tel:{{ res.telephone }}">{{ res.telephone }}</a></li>
+                <li>LinkedIn<a href="{{ res.linkedin }}" target="_blank">Sokirlov</a></li>
+                <li>Skype: <a href="skype:{{ res.skype }}?chat">{{ res.skype }}</a></li>
+                <li>Tg: <a href="tg://resolve?domain=sokirlov">Sokirlov</a> </li>
                 <li>{{ res.country }}, {{ res.city }}</li>
+                <li class="print"><a href="{% url 'print' %}">Print CV</a></li>
             </ul>
         </div>
         {% endfor %}

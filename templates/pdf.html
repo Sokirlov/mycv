@@ -138,6 +138,13 @@
             $('.description').each(function () {
                 $(this).css('height', a)
             })
+            window.addEventListener('afterprint', (event) => {
+                console.log('After print');
+                window.location.href = '/';
+            });
+            window.print()
+
+
         })
 
     </script>

@@ -21,7 +21,6 @@ def skill_column(arr):
     str = '<td><ul>'
     for j, i in enumerate(arr):
         if j > 0 and (j / coun_in_column).is_integer():
-            print(f'{(j / coun_in_column):_^40}')
             str += f'<li>{i.name}<li></ul></td><td><ul>'
         else:
             str += f'<li>{i.name}<li>'
