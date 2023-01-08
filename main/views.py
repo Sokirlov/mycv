@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
 from .models import Resercher, HardSkills, SoftSkills, Experience, Projects
 import pdfkit  #https://pypi.org/project/pdfkit/
-from wkhtmltopdf import WKHtmlToPdf  # pip install wkhtmltopdf
+from wkhtmltopdf import wkhtmltopdf, WKHtmlToPdf  # pip install wkhtmltopdf
 from rest_framework import viewsets
 from .serializers import AllSerializer, HardSkillsSerializer, SoftSkillsSerializer, ExperienceSerializer, ProjectsSerializer
 
@@ -39,11 +39,13 @@ def Downloads(request):
 
 def pdf(request):
     # file_data = pdfkit.from_url(url='http://g.fotka.kiev.ua/print/')
-    print(f'{str(settings.MEDIA_ROOT):_^30}')
-    file_data = WKHtmlToPdf(url='http://g.fotka.kiev.ua/print/', output_file=f'{settings.MEDIA_ROOT}\\cv.pdf')
-    file_data.render()
+    output_file = f'{settings.MEDIA_ROOT}\\cv.pdf'
+    print(f'{output_file:_^50}')
+
+    file_data = wkhtmltopdf(url='http://g.fotka.kiev.ua/print/', output_file=output_file)
+    # file_data.render()
     try:
-        response = HttpResponse(file_data.output_file, content_type='application/pdf')
+        response = HttpResponse(file_data, content_type='application/pdf')
         response['Content-Disposition'] = f'attachment; filename="sokolov_kyrylo_python_developer.pdf"'
     except:
         response = HttpResponseNotFound('<h1>File not exist</h1>')
