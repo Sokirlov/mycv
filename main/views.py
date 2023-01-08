@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
 from .models import Resercher, HardSkills, SoftSkills, Experience, Projects
 import pdfkit  #https://pypi.org/project/pdfkit/
+from wkhtmltopdf import WKHtmlToPdf  # pip install wkhtmltopdf
 from rest_framework import viewsets
 from .serializers import AllSerializer, HardSkillsSerializer, SoftSkillsSerializer, ExperienceSerializer, ProjectsSerializer
 
@@ -34,7 +35,10 @@ def Downloads(request):
                                            'projects': projects})
 
 def pdf(request):
-    file_data = pdfkit.from_url(url='http://g.fotka.kiev.ua/print/')
+    # file_data = pdfkit.from_url(url='http://g.fotka.kiev.ua/print/')
+
+    file_data = WKHtmlToPdf(url='http://g.fotka.kiev.ua/print/', output_file='../media/img/cv.pdf')
+    file_data.render()
     try:
         response = HttpResponse(file_data, content_type='application/pdf')
         response['Content-Disposition'] = f'attachment; filename="sokolov_kyrylo_python_developer.pdf"'
