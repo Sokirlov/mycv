@@ -1,3 +1,6 @@
+import os
+from pathlib import Path
+from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
 from .models import Resercher, HardSkills, SoftSkills, Experience, Projects
@@ -36,11 +39,11 @@ def Downloads(request):
 
 def pdf(request):
     # file_data = pdfkit.from_url(url='http://g.fotka.kiev.ua/print/')
-
-    file_data = WKHtmlToPdf(url='http://g.fotka.kiev.ua/print/', output_file='../media/img/cv.pdf')
+    print(f'{str(settings.MEDIA_ROOT):_^30}')
+    file_data = WKHtmlToPdf(url='http://g.fotka.kiev.ua/print/', output_file=f'{settings.MEDIA_ROOT}\\cv.pdf')
     file_data.render()
     try:
-        response = HttpResponse(file_data, content_type='application/pdf')
+        response = HttpResponse(file_data.output_file, content_type='application/pdf')
         response['Content-Disposition'] = f'attachment; filename="sokolov_kyrylo_python_developer.pdf"'
     except:
         response = HttpResponseNotFound('<h1>File not exist</h1>')
