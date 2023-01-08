@@ -1,0 +1,235 @@
+{% load main_tags %}
+<!DOCTYPE html>
+<html lang="en" | >
+<head>
+    <meta charset="UTF-8">
+    <title>{{ resercher.0.name }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,800;1,300;1,400&amp;display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js" integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
+    <style>
+        h1{
+            font-size: 48pt;
+            font-weight: 400;
+        }
+        h2{
+            font-size: 36pt;
+            margin-bottom: 5px;
+            width: 100%;
+            text-align: center;
+            font-weight: 300;
+        }
+        h3{
+            font-size: 30pt;
+            font-weight: 300;
+        }
+        b{
+            font-weight: 600;
+        }
+        body, p, li{
+            font-size: 12pt;
+            font-family:  'Open Sans';
+        }
+        .container{
+            width: min(100% - 15px, 1200px);
+            margin-inline: auto;
+            display: flex;
+            display: -webkit-box;
+            flex-direction: column;
+            -webkit-box-orient: vertical;
+
+        }
+        .flex{
+            display: flex;
+            display: -webkit-box;
+            -webkit-box-direction: normal;
+            flex-direction: row;
+            flex-wrap: wrap;
+            -webkit-flex-wrap: wrap;
+
+        }
+        .block{
+            flex: 1;
+        {#border-bottom: 1px solid #cccccc;#}
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+        }
+        li{
+            line-height: 1.7;
+            list-style: none;
+        }
+        .flex-colomn{
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -ms-flex;
+            {#height: 260px;#}
+        }
+        .title{
+            display: flex;
+            display: -webkit-box;
+            flex-direction: row;
+            justify-content: space-between;
+            -webkit-box-orient: vertical;
+            -webkit-justify-content: space-between;
+        }
+        .title>b{
+            text-transform: uppercase;
+            font-size: 24pt;
+        }
+        #experience > .block{
+            margin: 30px 0 ;
+            padding-bottom: 20px;
+        }
+        .tehn{
+            color: #2C2C2C;
+            padding: 0 5px;
+            margin: 0 2px;
+            {#font-size: 10pt;#}
+        }
+        .razdel{
+            border-bottom: 1px solid #ccc;
+        }
+        #projects {
+            display: flex;
+            display: -webkit-flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: stretch;
+            -webkit-flex-direction: row;
+            -webkit-flex-wrap: wrap;
+            -webkit-justify-content: space-between;
+            -webkit-align-items: stretch;
+        }
+        #projects h2{
+            width: 100%;
+        }
+        #projects .title{
+            min-height: 74px;
+        }
+        #projects .block{
+            width: fit-content;
+            flex: 1;
+            padding: 10px;
+            min-width: 300px;
+            border: 1px solid #ccc;
+            position: relative;
+            margin-bottom: 0;
+        }
+        .small_link{
+            font-size: small;
+        }
+        .tehn_block{
+        {#position: absolute;#}
+            bottom: 0;
+        }
+        .description{
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            let a = 0
+            $('.description').map(function(){
+                if(a < $(this).height()){
+                    a=$(this).height()
+                }
+            })
+            $('.description').each(function () {
+                $(this).css('height', a)
+            })
+        })
+
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1 style="text-transform: uppercase; margin-bottom: 0; text-align: center;">{{ resercher.0.name }}</h1>
+    <h3 style="margin-top:10px; text-align: center; ">{{ resercher.0.profession }}</h3>
+    <div class="flex block">
+        <div id="photo"><img src="/media/{{ resercher.0.avatar }}" width="250"></div>
+        <div id="contacts">
+            <h2 style="margin-top: 0; margin-left: 40px;">Contacts</h2>
+            <ul>
+                <li><b>Phone:</b> {{ resercher.0.telephone }}</li>
+                <li><b>Skype:</b> {{ resercher.0.skype }}</li>
+                <li><b>LinkedIn:</b> <a href="{{ resercher.0.linkedin }}">{{ resercher.0.linkedin }}</a></li>
+                <li><b>Adress:</b> {{ resercher.0.country }}, {{ resercher.0.city }}, {{ resercher.0.adress }}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="block">
+        <p>{{ resercher.0.introduction }}</p>
+    </div>
+    <div class="block razdel" id="hard_skill">
+        <h2>Hard Skill</h2>
+        <table width="100%">
+            <tr>
+                {{ hardskills|skill_column|markdown }}
+            </tr>
+        </table>
+
+{#        <div class="flex-colomn">#}
+{#            {% for hs in hardskills %}#}
+{#                <div style="width: 20%; margin: 5px;">{{ hs.name }}</div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+
+    </div>
+    <div class="block razdel" id="soft_skill">
+        <h2>Soft Skill</h2>
+
+        <table width="100%">
+            <tr>
+                {{ softskills|skill_column|markdown }}
+            </tr>
+        </table>
+{#        <div class="flex-colomn">#}
+{#            {% for sf in softskills %}#}
+{#                <div style="width: 20%; margin: 5px;">{{ sf.name }}</div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+    </div>
+    <div class="block razdel" id="experience">
+        <h2>My Experience</h2>
+            {% for exp in experience %}
+            <div class="block">
+                <div class="exp_top">
+                    <div class="title">
+                        <b>{{ exp.name }}</b>
+                        <div class="exp_time">
+                        {{ exp.start_work |date:"d M Y" }} - {{ exp.end_work |date:"d M Y" }}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="title">
+                    <div>
+                    <p><strong>Position:</strong> {{ exp.postion }}</p>
+                        </div>
+                    <div><a href="{{ exp.link }}">{{ exp.link }}</a>
+                    </div>
+                </div>
+                <div>ABOUT: {{ exp.description }}</div>
+            </div>
+            {% endfor %}
+    </div>
+    <div class="block razdel" id="projects">
+        <h2>My Projects</h2>
+        {% for pro in projects %}
+                <div class="block">
+                    <div class="title"><b>{{ pro.name }}</b></div>
+                    <a href="{{ pro.link }}" class="small_link">{{ pro.link }}</a>
+                    <div class="description"><p><strong>ABOUT: </strong>{{ pro.description|markdown }}</p></div>
+                    <div class="flex tehn_block">
+                        <div>Technologies:</div>
+                        {% for hskill in pro.skils.all %}
+                            <div class="tehn">{{ hskill.name }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+</div>
+</body>
+</html>

@@ -1,37 +1,15 @@
 from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseNotFound
 from .models import Resercher, HardSkills, SoftSkills, Experience, Projects
-
+import pdfkit
 from rest_framework import viewsets
-from rest_framework import permissions
-from rest_framework import generics
-
 from .serializers import AllSerializer, HardSkillsSerializer, SoftSkillsSerializer, ExperienceSerializer, ProjectsSerializer
 
-
-# class AllApiView(generics.ListCreateAPIVie):
 class AllApiView(viewsets.ModelViewSet):
     queryset = Resercher.objects.all().prefetch_related('hardskills_set', 'softskills_set', 'experience_set', 'projects_set',)
     serializer_class = AllSerializer
 
 
-
-
-# class AllApiView(viewsets.ModelViewSet):
-#     """
-#     API endpoint that allows users to be viewed or edited.
-#     """
-#     # resercher = Resercher.objects.all()
-#     # hardskills = HardSkills.objects.all()
-#     # softskills = SoftSkills.objects.all()
-#     # experience = Experience.objects.all()
-#     # projects = Projects.objects.all()
-#
-#     queryset = Resercher.objects.all().prefetch_related()
-#     serializer_class = AllSerializer
-#     # permission_classes = [permissions.IsAuthenticated]
-
-
-# Create your views here.
 def AllViews(request):
     resercher = Resercher.objects.all()
     hardskills = HardSkills.objects.all()
@@ -43,8 +21,23 @@ def AllViews(request):
                                          'softskills': softskills,
                                          'experience': experience,
                                          'projects': projects})
+def Downloads(request):
+    resercher = Resercher.objects.all()
+    hardskills = HardSkills.objects.all()
+    softskills = SoftSkills.objects.all()
+    experience = Experience.objects.all()
+    projects = Projects.objects.all()
+    return render(request, 'pdf.html', {'resercher': resercher,
+                                           'hardskills': hardskills,
+                                           'softskills': softskills,
+                                           'experience': experience,
+                                           'projects': projects})
 
-# def Test(request):
-#     resercher = Resercher.objects.all().prefetch_related('hardskills_set', 'softskills_set', 'experience_set',
-#                                                         'projects_set')
-#     return render(request, 'base1.html', {'resercher': resercher})
+def pdf(request):
+    file_data = pdfkit.from_url(url='http://g.fotka.kiev.ua/print/')
+    try:
+        response = HttpResponse(file_data, content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename="sokolov_kyrylo_python_developer.pdf"'
+    except:
+        response = HttpResponseNotFound('<h1>File not exist</h1>')
+    return response

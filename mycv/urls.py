@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from rest_framework import routers
 
 
+
 router = routers.DefaultRouter()
 router.register(r'allapi', views.AllApiView)
 
@@ -29,8 +30,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    # path('api-all/', views.AllApiView, name='api-view'),
-    # path('api-all/', AllApiView.as_view(), name='api-view'),
     path('', views.AllViews, name='index'),
-    # path('test/', views.Test, name='test'),
+    path('print/', views.Downloads, name='print'),
+    path('down/', views.pdf, name='download'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
