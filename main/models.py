@@ -10,6 +10,7 @@ class Resercher(models.Model):
     telephone = models.CharField('Номер телефона', max_length=10, default='0000000000')
     skype = models.CharField('Скайп', max_length=100, blank=True, null=True)
     linkedin = models.CharField('LinkedIn', max_length=400, blank=True, null=True)
+    github = models.URLField('GitHUB', blank=True, null=True)
     country = models.CharField('Страна', max_length=50)
     city = models.CharField('Город', max_length=50)
     adress = models.CharField('Адрес', max_length=250)
@@ -23,6 +24,19 @@ class Resercher(models.Model):
         return self.name
 
 
+class HardSkillCategory(models.Model):
+    resercher = models.ForeignKey(Resercher, on_delete=models.CASCADE, default=1)
+    name = models.CharField('Название навыка', max_length=100)
+    idsort = models.PositiveSmallIntegerField('Сортировка', auto_created=True)
+
+    class Meta:
+        ordering = ['idsort']
+        verbose_name = 'Раздел знаний'
+        verbose_name_plural = 'Розділ Знань'
+
+    def __str__(self):
+        return self.name
+
 class HardSkills(models.Model):
     SKILL_RAITE = (
         ('20', 'Знаком',),
@@ -34,7 +48,7 @@ class HardSkills(models.Model):
     idsort = models.PositiveSmallIntegerField('Сортировка', auto_created=True)
     name = models.CharField('Название навыка', max_length=100)
     raite = models.CharField('Уровень навыка', choices=SKILL_RAITE, max_length=14)
-    resercher = models.ForeignKey(Resercher, on_delete=models.CASCADE)
+    category = models.ForeignKey(HardSkillCategory, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
         ordering = ['idsort']
@@ -55,7 +69,7 @@ class SoftSkills(models.Model):
     )
     idsort = models.PositiveSmallIntegerField('Сортировка', auto_created=True)
     name = models.CharField('Название навыка', max_length=100)
-    raite = models.CharField('Уровень навыка', choices=SKILL_RAITE_CHOICES, max_length=14)
+    description = models.TextField('Описание', null=True, blank=True)
     resercher = models.ForeignKey(Resercher, on_delete=models.CASCADE)
 
     class Meta:
@@ -101,3 +115,32 @@ class Projects(models.Model):
     def __str__(self):
         return self.name
 
+
+
+class Navigations(models.Model):
+
+    RAZDEL_CHOISES = (
+        ('icons', 'соціальні мережі'),
+        ('hard_skill', 'Знання (Hard Skill)'),
+        ('soft_skills_n', 'Здібності (Soft Skill)'),
+        ('projects_n', 'Проекти'),
+        ('experience_n', 'Досвід роботи'),
+    )
+    variant = models.CharField('Розділ', choices=RAZDEL_CHOISES, max_length=15, null=True, blank=True)
+    link = models.CharField('Посилання', max_length=300, null=True, blank=True)
+    textlink = models.TextField('Текст посилання')
+    idsort = models.PositiveSmallIntegerField('Сортировка', auto_created=True, default=1)
+    resercher = models.ForeignKey(Resercher, on_delete=models.CASCADE, default='1')
+
+    def save(self, *args, **kwargs):
+        if self.variant != 'icons':
+            self.link = self.variant
+        super(Navigations, self).save(*args, **kwargs)
+
+    class Meta:
+        ordering = ['idsort']
+        verbose_name = 'Навігація'
+        verbose_name_plural = 'Навігація'
+
+    def __str__(self):
+        return self.link

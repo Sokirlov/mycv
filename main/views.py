@@ -3,14 +3,20 @@ from pathlib import Path
 from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
-from .models import Resercher, HardSkills, SoftSkills, Experience, Projects
+from .models import Resercher, HardSkills, SoftSkills, Experience, Projects, HardSkillCategory, Navigations
 import pdfkit  #https://pypi.org/project/pdfkit/
 from wkhtmltopdf import wkhtmltopdf, WKHtmlToPdf  # pip install wkhtmltopdf
 from rest_framework import viewsets
-from .serializers import AllSerializer, HardSkillsSerializer, SoftSkillsSerializer, ExperienceSerializer, ProjectsSerializer
+from .serializers import AllSerializer
 
 class AllApiView(viewsets.ModelViewSet):
-    queryset = Resercher.objects.all().prefetch_related('hardskills_set', 'softskills_set', 'experience_set', 'projects_set',)
+    queryset = Resercher.objects.all().prefetch_related(
+        'hardskillcategory_set__hardskills_set',
+        'softskills_set',
+        'experience_set',
+        'projects_set',
+        'navigations_set',
+    )
     serializer_class = AllSerializer
 
 
