@@ -10,15 +10,7 @@ except ImportError:
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_ROOT = os.path.dirname(__file__)
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '5vf8g6-v_rhewh=sy(sk#2qaaz(7wk6_et6snc12f9!w)y-kq*'
-# DEBUG = True
-ALLOWED_HOSTS = ['g.fotka.kiev.ua', '127.0.0.1',]
+ALLOWED_HOSTS = ['g.fotka.kiev.ua',]
 
 
 # Application definition
@@ -75,10 +67,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mycv.wsgi.application'
 
-
-# # Database
-# # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-#
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -127,23 +115,23 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CORS_ALLOWED_ORIGINS = [
     # "http://localhost:8000",
-    # "http://localhost:8080",
+    # "https://localhost:8080",
     # "http://localhost:8081",
     # "http://127.0.0.1:8000",
-    # "http://127.0.0.1:8080",
+    # "https://127.0.0.1:8080",
     # "http://127.0.0.1:8081",
     # "http://g.fotka.kiev.ua:8000",
     # "http://g.fotka.kiev.ua:8080",
     # "http://g.fotka.kiev.ua:8081",
     "http://vuecv.fotka.kiev.ua",
-    "http://vuecv.fotka.kiev.ua",
-    "http://vuecv.fotka.kiev.ua",
+    "https://vuecv.fotka.kiev.ua",
+    # "http://vuecv.fotka.kiev.ua",
     # local develop ip
-    "http://37.53.84.156:8000",
-    "http://37.53.84.156:8080",
-    "http://37.53.84.156:8081",
-    "http://109.86.40.120:8000",
-    "http://109.86.40.120:8080",
-    "http://109.86.40.120:8081"
+    # "http://37.53.84.156:8000",
+    # "http://37.53.84.156:8080",
+    # "http://37.53.84.156:8081",
+    # "http://109.86.40.120:8000",
+    # "http://109.86.40.120:8080",
+    # "http://109.86.40.120:8081"
 ]
 CORS_ALLOW_CREDENTIALS=True
